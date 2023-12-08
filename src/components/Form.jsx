@@ -19,32 +19,41 @@ const Form = () => {
             price: priceRef.current.value,
             quantity: quantityRef.current.value
         }
-        console.log('this is medicine ', medicine);
+        nameRef.current.value = '';
+        descriptionRef.current.value = '';
+        priceRef.current.value = '';
+        quantityRef.current.value = '';
         formCtx.addMedicine(medicine);
     }
+
+    const handleToggle = () => {
+        formCtx.toggleCart();
+    }
     return (
-        <>
+        <div className='flex justify-between'>
             <form onSubmit={onFormSubmit}>
                 <label htmlFor="name">
                     Medicine Name:
                 </label>
-                <input ref={nameRef} id='name' type="text" />
+                <input className=' bg-slate-100 border border-black rounded-md m-3' ref={nameRef} id='name' type="text" />
                 <label htmlFor="description">
                     Description:
                 </label>
-                <input ref={descriptionRef} id='description' type="text" />
+                <input className=' bg-slate-100 border border-black rounded-md m-3' ref={descriptionRef} id='description' type="text" />
                 <label htmlFor="price">
                     Price:
                 </label>
-                <input ref={priceRef} id='price' type="number" />
+                <input className=' bg-slate-100 border border-black rounded-md m-3' ref={priceRef} id='price' type="number" />
                 <label htmlFor="quantity">
                     Quantity:
                 </label>
-                <input ref={quantityRef} id='quantity' type="number" />
-                <button type='submit'>Add to Products</button>
+                <input className=' bg-slate-100 border border-black rounded-md m-3' ref={quantityRef} id='quantity' type="number" />
+                <button className=' bg-black text-white rounded-md p-2' type='submit'>Add to Products</button>
             </form>
-            <Cart />
-        </>
+            <button onClick={handleToggle}>
+                <Cart />
+            </button>
+        </div>
     )
 }
 

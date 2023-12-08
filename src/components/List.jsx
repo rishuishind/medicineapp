@@ -4,6 +4,16 @@ import FormContext from './contexts/FormContext.jsx';
 
 const List = () => {
     const formCtx = useContext(FormContext);
+
+    const handleCartAdd = (medicine) => {
+        const newMedicine = {
+            name: medicine.name,
+            description: medicine.description,
+            price: medicine.price,
+            cartQuantity: 1
+        }
+        formCtx.addToCart(newMedicine);
+    }
     return (
         <>
             <div>
@@ -15,7 +25,7 @@ const List = () => {
                                 <p>{medicine.description}</p>
                                 <p>Price: {medicine.price}</p>
                                 <p>Quantity: {medicine.quantity}</p>
-                                <button type='button'>Add to cart</button>
+                                <button onClick={() => handleCartAdd(medicine)} type='button'>Add to cart</button>
                             </li>
                         )
                     })}
